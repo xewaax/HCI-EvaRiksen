@@ -68,9 +68,10 @@
 }
 .nav li:hover ul a { 
     text-decoration: none;
+	background-color: #fff;
 }
 .nav li:hover ul li a:hover { 
     background-color: #1A18F7;
-	color: white;
+	color: #fff;
 
 }

@@ -13,7 +13,9 @@ body {
 .container {
 	display: flex;
 	align-items: center;
-	flex-direction: column;
+	flex-direction: column;	
+	width: 80%;
+	margin: 0 auto;
 }
 
 
@@ -21,7 +23,6 @@ h1 {
 	font-family: abel, sans-serif;
 	font-size: 2em;
 	color: #1A18F7;
-	padding-top: 40px;
 }
 
 h2 {
@@ -34,6 +35,33 @@ a {
 	font-family: abel, sans-serif;
 	color: white;
 }
+
+.intro {
+	display: flex;
+	flex-direction: column;
+	padding-top: 50px;
+}
+
+.mePic{
+	width: 200px;
+	display: flex;
+	order:1;
+}
+
+@media only screen and (min-width : 600px) {
+/* Styles */
+ 
+
+/* end query */
+
+
+@media only screen and (min-width : 900px) {
+/* Styles */
+.container {
+	width: 50%;
+}
+	
+} /* end query */
 
 
 
