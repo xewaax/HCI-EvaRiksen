@@ -1,0 +1,76 @@
+.nav {
+  list-style: none;
+}
+
+
+.nav li {
+  float: left; /*1*/
+}
+
+/*
+  nav link items
+*/
+.nav > li a {
+  display: block; /*1*/
+  padding: 12px 18px; /*2*/
+  text-decoration: none; /*3*/
+  color: #999; /*4*/
+  border-bottom: 2px solid #eee;
+  transition: all ease .5s;
+  font-size: 1.2em;
+}
+
+/*
+  fade out all links on ul hover
+*/
+.nav:hover > li a {
+  opacity: .3;
+  transition: all ease .5s;
+}
+
+/*
+  override previous rule to highlight current link
+*/
+.nav > li:hover a {
+  opacity: 1;
+  color: #1A18F7;
+  border-color: #1A18F7;
+}
+
+/*
+  Dropdown hover
+*/
+.nav ul {
+    list-style: none;
+    position: absolute;
+   display: none;
+}
+
+.nav ul li {
+    padding-top: 1px; 
+    float: none;
+	font-size: 0.9em;
+	
+}
+.nav ul a {
+    white-space: nowrap; 
+	
+}
+.nav li:hover > ul { 
+   display: block;
+   margin-left: -40px;
+   transition: all ease .5s;
+   
+}
+.nav li:hover a { 	
+    text-decoration: none;
+	
+}
+.nav li:hover ul a { 
+    text-decoration: none;
+}
+.nav li:hover ul li a:hover { 
+    background-color: #1A18F7;
+	color: white;
+
+}
