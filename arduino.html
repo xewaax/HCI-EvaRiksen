@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	
+	<title>HCI Eva Riksen - Arduino</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<!-- Stylesheets -->
+	<link rel="stylesheet" href="css/style.css"/> 
+	<link rel="stylesheet" href="css/nav.css"/> 
+  
+	</head>
+	
+	<body>	
+		
+		<div class="container">
+					
+		<header>  		  
+		<ul class="nav">
+			  <li>
+				<a class='list-item' href="index.html">
+				 Home
+				</a>					
+			  </li>
+			  
+			  <li class="dropdown">
+				<a class='list-item'>
+				 Topics
+				</a>
+					<ul class="hoverList topics">
+					  <li><a href="e_games.html">Exertion Interfaces</a></li>
+					  <li><a href="arvr.html">AR &amp; VR</a></li>
+					  <li><a href="wearables.html">Wearables</a></li>
+					  <li><a href="a_creatures.html">Artificial Creatures</a></li>
+					</ul>
+			  </li>
+			  
+			  <li>
+				<a class='list-item'>
+				Workshops
+				</a>
+					<ul class="hoverList workshops">
+				  <li><a href="c_vision.html">Computer Vision</a></li>
+				  <li><a href="unity.html">Unity &amp; MadMapper</a></li>
+				  <li><a href="arduino.html">Arduino</a></li>				
+					</ul>
+			  </li>
+			  
+			  <li>
+				<a class='list-item' href="excursie.html">
+				  Excursie
+				</a>					
+			  </li>
+			  
+			  <li>
+				<a class='list-item' href="labweken.html">
+				 Labweken
+				</a>					
+			  </li>		  
+
+			</ul>
+
+		</header>
+		
+		<main>
+				
+			<h1>Arduino</h1>
+				<h2>Introductie</h2>
+					<p>Voordat we met de labweken van start kunnen gaan, is het belangrijk om iets te snappen van Arduino. Arduino is een elektronicaplatform waarmee je van alles en nog wat mee kan maken. Ik maak gebruik van de Arduino Uno kit. Hierbij komen ook allerlei draadjes, LEDs, buttons en verschillende sensoren. Je kan alle componenten met elkaar verbinden door middel van een breadboard. Dit is een blok met allerlei gaatjes die geleiden en zo in verbinding staan met elkaar. Zo hoef je geen draadjes aan elkaar te solderen en zijn alle onderdelen dus herbruikbaar. Ik heb een aantal experimenten met Arduino gedaan die hieronder worden toegelicht.
+					<figure>
+							<img src="images/arduino.png" alt ="Arduino Uno" width="300" />
+							<figcaption>Arduino Uno.</figcaption>
+						</figure>					
+					</p>
+				
+				<h2>Blinking LEDs</h2>
+					<p>De eerste opdracht was om een LED te laten knipperen. Met de voorbeelden in het Arduino programma zelf was dit zo gebeurd. Het werd lastiger om twee LEDs te laten knipperen. Dit kan door een paralelle schakeling op het breadboard te maken. De bedoeling was dat 1 LED twee keer zo snel zou knipperen als de andere LED. Hieronder is mijn Arduino code te zien en het resultaat.
+
+					<figure>
+						<img src="images/2leds.jpg" alt="2 LEDs" width="600"/>
+						<figcaption>Breadboard met twee LEDs.</figcaption>
+					</figure>	
+					
+					<pre>
+						<code>
+void setup() {
+  // initialize digital pin LED_BUILTIN as an output.
+  pinMode(13, OUTPUT);
+  pinMode(12, OUTPUT);
+}
+
+// the loop function runs over and over again forever
+void loop() {
+  digitalWrite(13, HIGH);  
+  digitalWrite(12, HIGH);  
+  delay(1000);
+  
+  digitalWrite(13, LOW);  
+  delay(1000);
+  
+  digitalWrite(12, LOW);
+  digitalWrite(13, HIGH);   
+  delay(1000);  
+ 
+  digitalWrite(13, LOW);
+  delay(1000);                      
+  
+}
+						</code>
+					</pre>
+					
+					<iframe width="560" height="315" src="https://www.youtube.com/embed/8bIO54qbYIg" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>				
+					</p>
+				
+				<h2>Fading LEDs</h2>
+					<p>Ik gebruik hierbij dezelfde constructie van twee LEDs op een breadboard. Ik heb alleen een andere code gebruikt.	Hierbij fade één van de LEDs in terwijl de andere tegelijkertijd uitfade.
+					
+					<pre>
+						<code>
+int greenLed = 10;
+int yellowLed = 9;
+void setup() {
+ pinMode(greenLed, OUTPUT);
+ pinMode(yellowLed, OUTPUT);
+}
+void loop() {
+ for (int brightness=255; brightness > 0; brightness--){
+ analogWrite(yellowLed, brightness);
+  delay(10);
+  }  
+ for (int brightness=0; brightness <256; brightness++){
+ analogWrite(greenLed, brightness);
+ delay(10);
+ }
+
+}
+						</code>
+					</pre>
+
+					
+					<iframe width="560" height="315" src="https://www.youtube.com/embed/UKbLuzj4JDg" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>						
+					</p>
+				
+				<h2>Fading LEDs with potmeter</h2>
+					<p>Hierbij gaat het weer om het in- en uitfaden van de LEDs, maar nu doen we dit met een potmeter. Dit is een draaiknop. Het is te vergelijken met een dimmer. Wanneer ik eraan draai moet één van de LEDs aan gaan en de andere LED (die al aan staat) gaat tegelijkertijd uit.
+										
+					<pre>
+						<code>
+float sensorValue = 0; // variable for sensor value
+int sensorPin = A0; // variable for sensor pin
+int greenLed = 10;
+int yellowLed = 9;
+
+void setup() {
+ pinMode(sensorPin, INPUT);
+ Serial.begin(9600);
+ 
+ pinMode(greenLed, OUTPUT);
+ pinMode(yellowLed, OUTPUT);
+ 
+}
+void loop() {
+ sensorValue = analogRead(sensorPin); 
+ sensorValue = map(sensorValue, 0, 1023, 0, 255);
+ 
+analogWrite(greenLed, sensorValue);
+analogWrite(yellowLed, 255-sensorValue);
+
+ Serial.print("sensor = "); 
+
+ Serial.println(sensorValue); 
+ delay(20); 
+}						
+						</code>
+					</pre>
+						
+						<iframe width="560" height="315" src="https://www.youtube.com/embed/Q6y19LcOalw" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+					</p>
+					
+					<h2>Controlling LEDs with light</h2>
+					<p>Zoals ik zei komt de Arduino kit met allerlei sensoren. Een lichtsensor is daar één van. De sensor meet hoeveel licht er op schijnt en hier kan je ook op inspelen. De waarden van de LEDs kan je koppelen aan de waarden van de sensor. Zo kan je een LED aan- of uitzetten door een bepaalde hoeveelheid licht op de sensor te schijnen.
+						
+					<figure>
+						<img src="images/light.jpg" alt="Lightsensor" width="600"/>
+						<figcaption>Breadboard met lichtsensor en LEDs.</figcaption>
+					</figure>						
+					<pre>
+						<code>
+float sensorValue = 0; // variable for sensor value
+int sensorPin = A0; // variable for sensor pin
+int greenLedPin = 10;
+int yellowLedPin = 9;
+
+void setup() {
+ pinMode(sensorPin, INPUT);
+ pinMode(greenLedPin, OUTPUT);
+ pinMode(yellowLedPin, OUTPUT);
+ Serial.begin(9600);
+}
+void loop() {
+ sensorValue = analogRead(sensorPin); // read the value/current on the sensor pin and
+ // store that value in the variable sensorValue
+
+ sensorValue = constrain(sensorValue, 500, 900);
+ sensorValue = map(sensorValue, 515, 885, 0, 255);
+
+ 
+ analogWrite(greenLedPin, sensorValue);
+ analogWrite(yellowLedPin, sensorValue);
+
+  
+ Serial.print("sensor = "); // print out the text "sensor = " to the serial
+ // monitor
+ Serial.println(sensorValue); // print out sensorValue to the Serial Monitor
+ 
+
+
+ delay(20); // delay for 0.2 seconds
+}
+						</code>
+					</pre>
+						<iframe width="560" height="315" src="https://www.youtube.com/embed/Tl9rowKHhpc" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+						
+					</p>	
+
+				<h2>Arduino and Processing (lightsensor)</h2>
+					<p>Arduino werkt via een poort op je laptop. Je kan via deze poort een ander programma aan Arduino koppelen. In deze opdracht koppel ik Arduino aan Procesing. Procesing is een programma waarmee je kan tekenen met code. Dit zorgt voor allerlei grappige interacties. Je kan bijvoorbeeld een blokje laten bewegen met je muis. Je kan een code in Processing ook triggeren met de sensoren van de Arduino. We gaan door middel van de lichtsensor interacten met Processing. Bij het eerste filmpje gebruikte ik de code van de opdracht. Bij het tweede en derde voorbeeld heb ik de code van Processing aangepast, waardoor er andere vormen en interacties zijn ontstaan.						
+											
+					
+						<iframe width="560" height="315" src="https://www.youtube.com/embed/_P79kXUum78" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+						
+						<iframe width="560" height="315" src="https://www.youtube.com/embed/IXLEe4ccm9Y" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+						
+					<pre>
+						<code>
+import processing.serial.*;
+Serial myPort;
+String sensorReading="";
+PFont font;
+void setup() {
+ size(400, 400);
+ myPort = new Serial(this, Serial.list()[0], 9600); 
+ myPort.bufferUntil('\n');
+ font = createFont(PFont.list()[2], 16);
+ textFont(font);
+}
+void draw() {
+ background(255);
+ fill(250);
+ text("Sensor Reading: " + sensorReading, 20, 20);
+ triangle(float(sensorReading), 80, float(sensorReading), 360, 81, 360);
+}
+void serialEvent (Serial myPort) {
+ sensorReading = myPort.readStringUntil('\n');
+}
+						</code>
+					</pre>
+					
+					<iframe width="560" height="315" src="https://www.youtube.com/embed/3cb0CEghOuI" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+						
+					<pre>
+						<code>
+import processing.serial.*;
+Serial myPort;
+String sensorReading="";
+PFont font;
+void setup() {
+ size(400, 400);
+ myPort = new Serial(this, Serial.list()[0], 9600); 
+ myPort.bufferUntil('\n');
+ font = createFont(PFont.list()[2], 16);
+ textFont(font);
+}
+void draw() {
+ background(255);
+ fill(150);
+ text("Sensor Reading: " + sensorReading, 20, 20);
+ rect(float(sensorReading), float(sensorReading), 80, 80);
+} 
+void serialEvent (Serial myPort) {
+ sensorReading = myPort.readStringUntil('\n');
+}
+						</code>
+					</pre>					
+					</p>	
+
+				<h2>Two buttons</h2>
+					<p>De Arduino is ook te besturen door middel van buttons. Deze kun je op het breadboard klikken en linken aan bepaalde acties. Bij deze opdracht maak ik gebruik van twee buttons en een LED. Hierbij is het de bedoeling dat de LED aan gaat wanneer één van de twee buttons ingedrukt wordt, maar NIET aan gaat wanneer deze buttons tegelijkertijd worden ingedrukt. 
+
+					<figure>
+						<img src="images/buttons.jpg" alt="Buttons" width="600"/>
+						<figcaption>Breadboard met buttons en LED.</figcaption>
+					</figure>						
+					
+					<pre>
+						<code>
+const int buttonPinR = 2;     // the number of the pushbutton pin
+const int buttonPinL = 3;     // the number of the pushbutton pin
+const int ledPin =  13;      // the number of the LED pin
+
+void setup() {
+  // initialize the LED pin as an output:
+  pinMode(ledPin, OUTPUT);
+  // initialize the pushbutton pin as an input:
+  pinMode(buttonPinL, INPUT);
+  pinMode(buttonPinR, INPUT);
+}
+
+void loop() {
+
+   if (digitalRead(buttonPinL) == HIGH ^ digitalRead(buttonPinR) == HIGH) {
+    // turn LED on:
+    digitalWrite(ledPin, HIGH);
+  } else{
+    // turn LED off:
+    digitalWrite(ledPin, LOW);
+  }
+}
+						</code>
+					</pre>					
+					
+					<iframe width="560" height="315" src="https://www.youtube.com/embed/BegQD5qA9lA" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>			
+					
+					</p>	
+
+				<h2>Servomotor</h2>
+					<p>Met de Arduino kan je ook beweging regelen. Dit kan door middel van een servomotor. Dit is een kleine motor die naar een bepaalde positie kan bewegen. Het bereik van de motor is 180 graden. Met een code kan je de motor laten bewegen op leuke manieren. Je kan hem bijvoorbeeld laten 'dansen'.
+					
+					<pre>
+						<code>
+#include &lt;Servo.h&gt;
+
+Servo myServo; // Declare a servo object for us to control
+int servoPin = 9; // Var for the pin the servo connects to
+int pos = 0; // Var to keep track of the servo's position
+void setup() {
+ myServo.attach(servoPin); // Tell the servo to what pin it's connected to
+}
+void loop() {
+ for(pos = 0; pos < 80; pos += 1){ 
+ myServo.write(pos); 
+ delay(5); 
+ }
+  for(pos = 80; pos> 0; pos -= 1){ 
+ myServo.write(pos); 
+ delay(5); 
+ } 
+ for(pos = 0; pos < 160; pos += 1){
+ myServo.write(pos); 
+ delay(10); 
+ }
+ for(pos = 160; pos > 80; pos -= 1){
+ myServo.write(pos); 
+ delay(5); 
+ }
+
+ for(pos = 80; pos < 160; pos += 1){
+ myServo.write(pos); 
+ delay(5); 
+}
+ for(pos = 160; pos > 0; pos -= 1){
+ myServo.write(pos); 
+ delay(10); 
+ }
+}
+						</code>
+					</pre>					
+					
+					<iframe width="560" height="315" src="https://www.youtube.com/embed/25AUpGsGZms" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>			
+					
+					</p>	
+
+				<h2>Controlling servomotor with buttons</h2>
+					<p>De servomotor van de vorige opdracht krijgt een digitale input via een code. Je kan de servomotor ook analoog bedienen. De potmeter (draaiknop) die ik al eerder gebruikte kan je gebruiken om de servomotor mee te laten draaien met je eigen beweging. Je kan ook buttons gebruiken om de servomotor te besturen. Hierbij heb ik twee buttons gebruikt die de draairichting van de motor bepalen.
+					
+					<figure>
+						<img src="images/servo.jpg" alt="Servomotor with buttons" width="600"/>
+						<figcaption>Breadboard met buttons en servomotor.</figcaption>
+					</figure>
+					
+					<pre>
+						<code>
+#include &lt;Servo.h&gt;
+
+Servo myServo; // Declare a servo object for us to control
+int servoPin = 9; // Var for the pin the servo connects to
+int buttonPinL = 3; // Var for the pin of the left button
+int buttonPinR = 2; // Var for the pin of the right button
+
+void setup() {
+ myServo.attach(servoPin); // Tell the servo to what pin it's connected to
+ pinMode(buttonPinL, INPUT); // Set the left button pin to input
+ pinMode(buttonPinR, INPUT); // Set the right button pin to input
+ }
+
+void loop() {
+ if (digitalRead(buttonPinL) == HIGH) {
+     int pos = 160;
+     myServo.write(pos); 
+     delay(10); 
+  } else if (digitalRead(buttonPinR) == HIGH){
+     int pos = 0;
+     myServo.write(pos); 
+     delay(10);
+  }
+}
+						</code>
+					</pre>					
+					
+				<iframe width="560" height="315" src="https://www.youtube.com/embed/CGjgLNNdQJo" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>			
+					
+					</p>
+
+				<h2>Sound</h2>
+					<p>Met Arduino kan je ook geluid maken. Dit doe je door een klein speakertje vast te zetten op de Arduino. Deze zat ook in de Arduino kit. In de Arduino code kan je dan vervolgens verschillende tonen aangeven. Met de volgende code heb ik een leuk deuntje weten te maken. In het filmpje wordt deze afgespeeld. Het is natuurlijk niet perfect, maar misschien herken je het wel!
+					
+					<pre>
+						<code>
+int speakerPin = 8;
+void setup() {
+ pinMode(speakerPin, OUTPUT);
+}
+void loop() {
+ 
+ tone(speakerPin, 440, 200); 
+ delay(200); 
+ 
+ tone(speakerPin, 523, 200); 
+ delay(200); 
+ 
+ tone(speakerPin, 587.33, 200); 
+ delay(300); 
+ 
+ tone(speakerPin, 587.33, 200); 
+ delay(200); 
+
+ tone(speakerPin, 587.33, 200); 
+ delay(200);
+
+ tone(speakerPin, 659.25, 200); 
+ delay(200); 
+
+ tone(speakerPin, 698.46, 200); 
+ delay(300); 
+ 
+ tone(speakerPin, 698.46, 200); 
+ delay(200); 
+ 
+ tone(speakerPin, 698.46, 200); 
+ delay(200); 
+ 
+ tone(speakerPin, 783, 200); 
+ delay(200); 
+ 
+ tone(speakerPin, 659.25, 200); 
+ delay(300); 
+ 
+ tone(speakerPin, 659.25, 200); 
+ delay(200); 
+ 
+ tone(speakerPin, 587.33, 200); 
+ delay(200); 
+ 
+ tone(speakerPin, 523.25, 200); 
+ delay(200); 
+
+tone(speakerPin, 523.25, 200); 
+ delay(300); 
+
+tone(speakerPin, 587.33, 200); 
+ delay(200); 
+}
+						</code>
+					</pre>					
+					
+				<iframe width="560" height="315" src="https://www.youtube.com/embed/JYqiTTYTkxw" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>					
+					</p>	
+
+				<h2>Accelerometer and Gyroscope</h2>
+					<p>Met Arduino kan je door middel van een accelerometer ook beweging meten. Dit gebeurt op basis van x, y en z-waarden. Ik heb een voorbeeldcode in Arduino geupload en hierbij de seriële monitor en de seriële plotter geopend. Op het scherm van de monitor zijn de verschillende waarden te zien en op het scherm van de plotter zien we deze waarden in een grafiek uitgewerkt. 
+					
+					<figure>
+						<img src="images/before1.jpg" alt="Seriële monitor" width="400"/>
+						<figcaption>Seriële monitor met de waarden van de accelerometer.</figcaption>
+					</figure>
+					<figure>
+						<img src="images/after.jpg" alt="seriële plotter" width="400"/>
+						<figcaption>Seriële plotter bij het stil houden van de accelerometer.</figcaption>
+					</figure>
+					<figure>
+						<img src="images/before2.jpg" alt="Seriële plotter" width="400"/>
+						<figcaption>Seriële plotter bij het bewegen van de accelerometer.</figcaption>
+					</figure>
+					
+					Deze waarden lopen flink uiteen wanneer de accelerometer gewoon stil ligt. Daarom heb ik ze moeten calibreren. Dit duurde een aantal minuten, maar toen ik de afwijkende waarden had, kon ik weer verder. Deze waarden heb ik in de code ingevuld waardoor alle waarden een stuk dichter bij de 0 zitten. Behalve de z-index, want dit gaat om zwaartekracht. Na het calibreren kan je de accelerometer gebruiken als een soort van waterpas. De volgende opdracht is dan ook om een 'waterpas' te maken waarbij er een geluidje klinkt als de waterpas recht staat. Dit is wanneer de pitch en de roll in de code 0 zijn. Ik heb een marge van 2 gepakt, dus de waarde moet tussen de -2 en 2 liggen zodat de waterpas 'recht' staat. Ik heb de code van de opdracht gebruikt en hier een aantal dingen toegevoegd. Ik heb alles wat met de LED te maken had verwijderd en een speaker geïnitialiseerd in de code. Vervolgens zette ik onderin de void loop() direct onder het rijtje van "// display Yaw, Pitch, Roll angles in degrees" de volgende code. In het filmpje is het resultaat te zien!
+					
+					<pre>
+						<code>
+...
+
+float pitch = ypr[1] * 180/M_PI;
+float roll = ypr[2] * 180/M_PI;
+ if(pitch >= -2 && pitch <= 2 && roll >= -2 && roll <= 2){
+  //Between -2 and 2
+  //beep
+  tone(speakerPin, 440, 200);
+  delay(500); 
+}  
+						</code>
+					</pre>					
+							
+						<iframe width="560" height="315" src="https://www.youtube.com/embed/cI2UTP1ZBxA" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>				
+					
+					</p>										
+					
+		</main>
+		
+		<img src="images/hci.png" alt="icon" width="80" />
+	
+	</div> <!------container------->
+		  
+		  
+		  
+	</body>
+	
+</html>

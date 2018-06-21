@@ -48,6 +48,30 @@ a {
 	
 }
 
+figcaption {
+	color: #282828;
+}
+
+pre code {
+    background-color: #1A18F7; 
+    display: block;
+    padding: 10px;
+}
+code {
+    font-size: 120%;
+	color: white;
+}
+
+.txtlink {
+	color: #1A18F7;
+	text-decoration: none;
+	font-family: 'Montserrat', sans-serif; 
+}
+
+iframe {
+	padding-top: 20px;
+}
+
 @media only screen and (min-width : 600px) {
 /* Styles */
  
@@ -62,7 +86,7 @@ a {
 @media only screen and (min-width : 900px) {
 /* Styles */
 .container {
-	width: 50%;
+	width: 40%;
 }
 
 
