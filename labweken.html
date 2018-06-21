@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	
+	<title>HCI Eva Riksen - Labweken</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<!-- Stylesheets -->
+	<link rel="stylesheet" href="css/style.css"/> 
+	<link rel="stylesheet" href="css/nav.css"/> 
+  
+	</head>
+	
+	<body>	
+		
+		<div class="container">
+					
+		<header>  		  
+		<ul class="nav">
+			  <li>
+				<a class='list-item' href="index.html">
+				 Home
+				</a>					
+			  </li>
+			  
+			  <li class="dropdown">
+				<a class='list-item'>
+				 Topics
+				</a>
+					<ul class="hoverList topics">
+					  <li><a href="e_games.html">Exertion Interfaces</a></li>
+					  <li><a href="arvr.html">AR &amp; VR</a></li>
+					  <li><a href="wearables.html">Wearables</a></li>
+					  <li><a href="a_creatures.html">Artificial Creatures</a></li>
+					</ul>
+			  </li>
+			  
+			  <li>
+				<a class='list-item'>
+				Workshops
+				</a>
+					<ul class="hoverList workshops">
+				  <li><a href="c_vision.html">Computer Vision</a></li>
+				  <li><a href="unity.html">Unity &amp; MadMapper</a></li>
+				  <li><a href="arduino.html">Arduino</a></li>				
+					</ul>
+			  </li>
+			  
+			  <li>
+				<a class='list-item' href="excursie.html">
+				  Excursie
+				</a>					
+			  </li>
+			  
+			  <li>
+				<a class='list-item' href="labweken.html">
+				 Labweken
+				</a>					
+			  </li>		  
+
+			</ul>
+
+		</header>
+		
+		<main>
+				
+			<h1>Labweken</h1>
+				<h2>Introductie</h2>
+					<p>Vanaf maandag 4 juni tot en met vrijdag 15 juni zijn de HCI labweken van de Haagse Hogeschool aan de gang. De gehele CMD en UX opleiding wordt opgedeeld in groepjes waarmee je twee weken lang werkt aan een project. Hierbij kon je aan de slag binnen een aantal topics: exertion gaming, virtual &amp; augmented reality, wearables en artificial creatures. Ik werd hierbij opgedeeld in groep 3 samen met Anna Fleur Bakker, Marit Leijdens, Qian Hong Lin en Laurence van Es bij het onderwerp exertion gaming. Met dit groepje werkte ik twee weken lang in de Dutch Innovation Factory in Zoetermeer. Dagelijks waren we er van 9 tot 5. Uiteindelijk werden alle projecten tentoongesteld tijdens de HCI expo op vrijdagavond 15 juni. Ik zal per dag vertellen wat we allemaal hebben bereikt en wat mijn rol is geweest. Vervolgens vertel ik natuurlijk iets over ons eindproduct en zal ik reflecteren op deze labweken.					
+					</p>
+				
+				<h2>Dag 1: maandag 4 juni</h2>
+					<p>Vandaag was de eerste dag van de labweken. We begonnen meteen met het bedenken van concepten. We hadden al gauw veel ideeën, dus we maakten een top 5 (de volgorde maakt hierbij niet uit). 
+					Als eerste de Interactive Playground. Hierbij hadden we meerdere dingen bedacht. Voornamelijk voor kinderen. Een voorbeeld was een spel waarbij kinderen de goede en foute antwoorden een bepaalde kant op konden schoppen. Dit was mogelijk door een projectie op de grond. 
+					Als tweede een station game waarbij wachtende mensen interactief bezig konden zijn. Op schermen zouden zij bijvoorbeeld 'Draw Something' met elkaar kunnen spelen. Als derde concept bedachten we Supermarket Route. Hierbij geeft een winkelwagentje de route aan van je boodschappenlijstje. 
+					Het vierde concept was Disco Stairs. Hiermee willen we de trappen in de HHS wat leuker te maken door ze op te lichten als je erop staat. 
+					Ten slotte hadden we een concept met muziek. Hierbij wilden we dat mensen zelf iets konden dirigeren of muziek maken via een scherm.
+					
+					<figure>
+						<img src="images/1-1.jpg" alt="Brainstormblad" width="600"/>
+						<figcaption>Resultaat van onze brainstormsessie.</figcaption>
+					</figure>
+					
+					We besloten hierbij om verder te gaan met het supermarkt concept. We willen hierbij gebruikmaken van een camera die zogenaamde TUIO codes kan lezen. TUIO codes zijn te vergelijken met QR codes. Er zijn 200 unieke codes die allemaal gelinkt zijn aan een ID. Dit is een cijfer. Wij willen uiteindelijk dat er lampjes gaan branden bij bepaalde ID’s. Hier heb ik me voornamelijk mee bezig gehouden. Ik heb na een hele hoop research Reactivision, een programma dat TUIO codes via de webcam camera kan identificeren, weten te koppelen aan Processing. In Processing was het mogelijk om de beweging van deze code te volgen. Ik hield dan mijn mobiel met een fiducial (TUIO code) voor de camera waardoor ik een blokje op het scherm kon bewegen.
+					<figure>
+						<img src="images/fiducials.png" alt="Fiducials" width="400"/>
+						<figcaption>Voorbeelden van TUIO fiducials.</figcaption>
+					</figure>
+					
+					</p>
+					<iframe width="560" height="315" src="https://www.youtube.com/embed/az85kB5K1hw" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+					<p>
+					Met wat meer research kregen we de Processing code gelinkt aan de Arduino. Uiteindelijk lukte het om een lampje aan te laten gaan wanneer ik de fiducial voor de camera hield. Dit is precies wat we vandaag wilden bereiken! De volgende challenge wordt om 2 lampjes te koppelen aan 2 verschillende codes.	
+					<iframe width="560" height="315" src="https://www.youtube.com/embed/9iOeHDIHuB8" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+					</p>
+					
+				<h2>Dag 2: dinsdag 5 juni</h2>
+				<p>Vandaag is het gelukt om 2 lampjes te koppelen aan 2 verschillende fiducials. Dit wilde ik ook bereiken vandaag. Dit lukte redelijk makkelijk omdat we natuurlijk al de code hadden geschreven voor 1 lampje. We wilden als volgende stap dat de lichtjes een aantal keer zouden gaan knipperen en vervolgens uit zouden gaan, net als een knipperlicht van een auto. Het laten knipperen van de LED is gelukt, maar hierbij gaat het lichtje niet meer uit wanneer ik de TUIO code bij de webcam weghaal. Hier ga ik morgen weer mee verder.
+				</p>
+				
+				<p>
+				Mijn andere groepsleden hebben zich bezig gehouden met een LED strip te koppelen aan de Arduino. Dit is gelukt. Aan het einde van de dag probeerden we de LEDs van de onze Arduino te vervangen met de LED strips. Dit lukte helaas niet helemaal. De strips reageerden wel op de code, maar niet op de manier die wij wilden. Alleen de rode lichtjes gingen aan (terwijl de strip de kleuren rood, groen en blauw heeft) en deze gingen alleen maar zwak aan.	
+				</p>
+				<p>
+				Samen hebben we het concept nog wat aangescherpt. We zijn van plan om een supermarkt race te houden waarbij er TUIO codes op de grond liggen die aangeven welke kant de speler op moet. Hierbij racen twee spelers tegen elkaar. Door middel van het 'knipperlicht' weten de spelers welke richting ze op moeten.			
+				</p>
+				
+				<h2>Dag 3: woensdag 6 juni</h2>
+				<p>We zijn bezig geweest met de LED strips te koppelen aan de Arduino code voor TUIO. Dit is gelukt! Nog niet helemaal goed omdat de strips niet volledig aan gaan of alleen bepaalde kleuren (rood). Verder is het gelukt om een laptop dichtgeklapt te houden terwijl het Processing programma draait. We wilden eigenlijk een speciale Arduino camera kopen zodat we de laptop weg konden laten (onze webcam is met USB en dat kan je niet direct op de Arduino aansluiten). Dit was niet mogelijk, dus we zijn van plan om gewoon een laptop in de winkelwagen te leggen. Hiervoor moesten we uitzoeken of onze Arduino en webcam nog zouden kunnen werken wanneer de laptop gesloten was. Dit is ons ook gelukt. Hierna ben ik nog steeds bezig geweest met het programmeren van het knipperlicht. Chris stuurde mij al in de goede richting, maar dat ga ik morgen verder uitzoeken. 
+				</p>
+				
+				<p>
+				Door Chris hebben we eigenlijk nieuwe ideetjes gekregen. We misten eigenlijk een beetje gamification binnen ons concept. Daarom kwamen we met een ander idee. We willen het winkelwagentje gebruiken als controller en daarmee rijdt je op een scherm door een virtuele supermarkt. We willen het scherm opdelen in 3 delen. Op elk deel kan er een product liggen of naar beneden vallen. Het is dan aan de speler om deze producten op te vangen. We willen dit bereiken met TUIO codes.			
+				</p>
+				
+				<h2>Dag 4: donderdag 7 juni</h2>
+				<p>-	Concept aangescherpt
+-	LED
+-	Blink niet gelukt
+Vincent Lindeboom – Next Empire
+
+				
+				</p>
+				
+				<h2>Dag 5: vrijdag 8 juni</h2>
+				<p>Vandaag zijn we weer begonnen met de LED strips proberen te koppelen aan Arduino. Het lukt tot nu toe nog de hele tijd niet optimaal. De strips blijven aan staan wanneer ze uit horen te staan en ze knipperen op een gekke manier. Aan het einde van de dag is het gelukt om de strips uit te zetten wanneer ze uit moeten staan en ze gaan aan wanneer dit moet! De strips knipperen alleen wel erg snel, dus dit ga ik van het weekend proberen te fixen. Tussendoor hadden we een gastcollege van Peter van der Putten. Hij geeft Media Technology op Leiden University. Peter vertelde over allerlei verschillende soorten robots. Emotional, curious, helpless, pooping, misbehaving, creative en useless bots. Het was erg grappig om te zien wat er allemaal bereikt kon worden met verschillende soorten robots. Na het college. 
+				Peter van der Putten – Media Technology Leiden University (Bots like you)				
+				</p>
+				
+				<h2>Dag 6: maandag 11 juni</h2>
+				<p>In het weekend heb ik de Arduino mee naar huis genomen om de code te fixen voor de LED strips. Ze moesten uit staan in het begin en pas aan gaan wanneer er een bepaalde TUIO code werd gelezen. Dit is gelukt! Nu konden we vandaag meteen weer goed aan de slag. Ik heb samen met Marit gewerkt aan de strips. We hebben een nieuw circuit moeten bedenken omdat het vorige circuit niet helemaal meer werkte met de code. Het is te vergelijken met de afbeelding hieronder. 
+				Hierna hebben we de LED strips en de webcam bevestigd aan de winkelwagen. Het zicht van de webcam hebben we getest. De rest van mijn groepje heeft de nieuwe winkelwagen geregeld en zijn bezig geweest met het spel in Unity. Aan het einde zijn we nog even gaan brainstormen over een naam voor het spel. We kwamen onder andere met Food Rush en Shop Je Mall. 				
+				</p>
+				
+				<h2>Dag 7: dinsdag 12 juni</h2>
+				<p>We focusten ons vandaag op de winkelwagen. We moesten nu weer opnieuw kijken hoe we alles in de kar zouden positioneren. We zijn van plan om een behuizing te maken van karton voor de laptop. Deze bedekken we vervolgens met een deken. We zijn ook van plan om eventueel echte boodschappen in de kar te leggen. Dit geeft toch de echte supermarkt beleving. Vervolgens hebben we de LED strips vastgeplakt aan de kar. We hoefden deze niet te solderen aan de LED strips omdat we ook een behuizing hebben gemaakt voor de Arduino en het breadboard. Toen de strips goed vastzaten gingen we deze testen in het donker. Dit gaf een heel leuk effect met de lichtjes! We testten hier ook gelijk de beamer. Om een zo groot mogelijk beeld te krijgen op de witte muur, zullen wij deze beamer schuin moeten plaatsen. Als we hem recht voor de muur plaatsen, zit het in de weg van de bewegingsruimte van de kar. 
+				Als laatste werd het tijd om de TUIO codes te koppelen aan de game in Unity. Hierbij moest de code voor rechts ervoor zorgen dat de kar in het spel ook naar rechts gaat. Hetzelfde voor links. Dit kreeg ik bijna goed, alleen de zogenaamde keyPress functie, die ervoor moet zorgen dat er als het ware een key wordt ingedrukt van het toetsenbord, werkte niet. Dit is iets om morgen weer mee aan de slag te gaan. 				
+				</p>
+				
+				<h2>Dag 8: woensdag 13 juni</h2>
+				<p>Vandaag begon ik gelijk weer met de keyPress functie. Na een hele hoop research en tijd bleek wel dat dit niet mogelijk was. Je kan in Unity geen gegenereerde keyPress gebruiken. Dit was niet het enige probleem. Ik kwam erachter dat je niet 2 dezelfde programma’s op dezelfde port kan runnen. Dit was een groot probleem. Processing neemt namelijk al een port in beslag. Arduino kan dus niet tegelijkertijd communiceren met Unity en Processing zelf ook niet. Er waren een aantal opties om dit op te lossen. We konden een losse Arduino gaan werken en door middel van de accelerometer de beweging van de kar meten. Deze info sturen we dan door naar Unity. De andere optie was om niet via een port te communiceren, maar apart. Ik kreeg via Stack Overflow een tip om te werken met een bestandje op je laptop. Processing kan een bestandje aanmaken en daar data inzetten. Unity kan deze data lezen. Ik stuur daarom steeds een 0, 1 of 2 door (niks, TUIO code voor links en de TUIO code voor rechts) naar een txt bestandje. In Unity staat er een code die de meest recente data kan lezen. Hierdoor kan er een code geschreven worden in Unity waarbij het object naar links of naar rechts moet gaan. Ik heb dit getest en het werkt! Wanneer er een TUIO code gelezen wordt, kan er een object in Unity naar links of naar rechts verplaatst worden. Ik kon het nog niet volledig testen omdat de Unity game nog niet af was en het object steeds van de baan af viel. 
+				-	Baan 2 lanen				
+				</p>
+				
+				<h2>Dag 9: donderdag 14 juni</h2>
+				<p>Vandaag ben ik bezig geweest het werkend maken van de TUIO code in Unity. Dit lukte gelukkig al best snel. 
+				-	Game met banen
+				-	Game met assets
+				-	Testen
+
+				
+				</p>
+				
+				<h2>Dag 10 EXPO: vrijdag 15 juni</h2>
+				<p>
+				
+				</p>
+				
+				
+					
+					
+					
+					
+					<p>
+						<figure>
+							<img src="images/wakeboarding.jpg" alt ="Wakeboarding" width="600" />
+							<figcaption>Wakeboarding installatie.</figcaption>
+						</figure>
+					</p>
+				
+				<h2>Reflectie</h2>
+					<p>
+					</p>
+					
+					
+		</main>
+		
+		<img src="images/hci.png" alt="icon" width="80" />
+	
+	</div> <!------container------->
+		  
+		  
+		  
+	</body>
+	
+</html>
