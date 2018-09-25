@@ -2,7 +2,7 @@
 <html>
 	<head>
 	
-	<title>HCI Eva Riksen - Computer Vision</title>
+	<title>HCI Eva Riksen - Processing &amp; Computer Vision</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -65,7 +65,7 @@
 		
 		<main>
 				
-			<h1>Computer Vision	</h1>
+			<h1>Processing</h1>
 				<h2>Introductie</h2>
 					<p>Bij de volgende opdrachten heb ik gebruikgemaakt van Processing. Dit is een programma waarmee je als het ware kan tekenen door middel van code. Ook kunnen er hiermee interactieve animaties gemaakt worden. Het programma gebruikt Java als taal en de code bestaat meestal uit twee delen: setup &amp; draw.
 					</p>
@@ -168,10 +168,155 @@ void draw() {
 			<figcaption>Interactieve rechthoeken en driehoeken.</figcaption>
 		</figure>
 					
-				
-				<h2>Reflectie</h2>
-					<p>
+			<h1>Computer Vision</h1>
+				<h2>Opdracht CV 1</h2>
+					<p>Voor de computer vision opdrachten werk ik nog steeds met Processing. Er zijn namelijk libraries te downloaden waarmee je computer dingen kan herkennen. Bijvoorbeeld gezichten. Wanneer ik het voorbeeld van Processing open, zie ik het beeld van mijn webcam. Om het gezicht zit een groene rechthoek. Ik heb deze veranderd in een cirkel.
 					</p>
+					
+					<pre>
+						<code>
+import gab.opencv.*;
+import processing.video.*;
+import java.awt.*;
+
+Capture video;
+OpenCV opencv;
+
+void setup() {
+  size(640, 480);
+  video = new Capture(this, 640/2, 480/2);
+  opencv = new OpenCV(this, 640/2, 480/2);
+  opencv.loadCascade(OpenCV.CASCADE_FRONTALFACE);  
+
+  video.start();
+}
+
+void draw() {
+  scale(2);
+  opencv.loadImage(video);
+
+  image(video, 0, 0 );
+
+  noFill();
+  stroke(0, 255, 0);
+  strokeWeight(3);
+  Rectangle[] faces = opencv.detect();
+  println(faces.length);
+
+  for (int i = 0; i < faces.length; i++) {
+    println(faces[i].x + "," + faces[i].y);
+    ellipseMode(CORNER);
+    ellipse(faces[i].x, faces[i].y, faces[i].width, faces[i].height);
+  }
+}
+
+void captureEvent(Capture c) {
+  c.read();
+}
+						</code>
+					</pre>
+
+		<figure>
+			<img src="images/cv4.jpg" alt ="Processing" width="400" />
+			<figcaption>Een groene cirkel om het herkende gezicht.</figcaption>
+		</figure>	
+
+			
+			
+			
+			<h2>Opdracht CV 2</h2>
+					<p>De groene cirkel heb ik veranderd in een zwarte balk voor mijn ogen met de volgende code.
+					</p>
+					
+					<pre>
+						<code>
+import gab.opencv.*;
+import processing.video.*;
+import java.awt.*;
+
+Capture video;
+OpenCV opencv;
+
+void setup() {
+  size(640, 480);
+  video = new Capture(this, 640/2, 480/2);
+  opencv = new OpenCV(this, 640/2, 480/2);
+  opencv.loadCascade(OpenCV.CASCADE_EYE);  
+
+  video.start();
+}
+
+void draw() {
+  scale(2);
+  opencv.loadImage(video);
+
+  image(video, 0, 0 );
+
+  fill(0, 0, 0);
+  Rectangle[] faces = opencv.detect();
+  println(faces.length);
+
+  for (int i = 0; i < faces.length; i++) {
+    println(faces[i].x + "," + faces[i].y);    
+    rect(faces[i].x, faces[i].y, 40, 20);
+  }
+}
+
+void captureEvent(Capture c) {
+  c.read();
+}
+						</code>
+					</pre>
+
+		<figure>
+			<img src="images/cv5.jpg" alt ="Processing" width="400" />
+			<figcaption>Zwarte balken voor mijn ogen.</figcaption>
+		</figure>
+
+		<h2>Opdracht CV 3</h2>
+					<p>Ik heb gekeken naar een code voor Processing die het lichtste punt bepaalt van de camera opname. Dit punt werd aangegeven door een kleine cirkel. Ik heb hier iets leuks mee gedaan, namelijk de cirkel veranderd in een klein robotje.
+					</p>
+					
+					<pre>
+						<code>
+PImage robot;
+import gab.opencv.*;
+import processing.video.*;
+
+OpenCV opencv;
+Capture video;
+
+void setup() {
+  robot = loadImage("robot.png");
+  
+  size(640, 480);
+  video = new Capture(this, 640, 480);
+  opencv = new OpenCV(this, 640, 480);
+  
+  video.start();
+
+}
+
+void draw() {
+  opencv.loadImage(video);
+
+  image(video, 0, 0 ); 
+  
+  PVector loc = opencv.max();
+  
+  image(robot, loc.x, loc.y, 100, 100);
+}
+
+void captureEvent(Capture c) {
+  c.read();
+}
+						</code>
+					</pre>
+
+		<figure>
+			<img src="images/cv6.jpg" alt ="Processing" width="400" />
+			<figcaption>Afbeelding van een robot die het lichtste punt volgt.</figcaption>
+		</figure>		
 					
 					
 		</main>
