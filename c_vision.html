@@ -67,30 +67,107 @@
 				
 			<h1>Computer Vision	</h1>
 				<h2>Introductie</h2>
-					<p>
-					
+					<p>Bij de volgende opdrachten heb ik gebruikgemaakt van Processing. Dit is een programma waarmee je als het ware kan tekenen door middel van code. Ook kunnen er hiermee interactieve animaties gemaakt worden. Het programma gebruikt Java als taal en de code bestaat meestal uit twee delen: setup &amp; draw.
 					</p>
 				
-				<h2>Concept</h2>
-					<p>
-					
+				<h2>Opdracht 1</h2>
+					<p>Ik heb een aantal ellipsen gegenereerd in Processing. Hierbij heb ik de kleuren veranderd van de vulling en de omlijning. Ook heb ik ze op verschillende plaatsen gezet. Hieronder zie je de code en het resultaat.					
 					</p>
-				
-				<h2>Onderzoek</h2>
-					<p>
+					
+					<pre>
+						<code>
+void setup() {
+ size(200,200);
+ ellipseMode(CORNER);
+ 
+ fill(255, 0, 0);
+ stroke(255, 0, 255);
+ ellipse(40, 40, 100, 20);
+ 
+ fill(0, 255, 0);
+ stroke(255, 255, 0);
+ ellipse(100, 40, 60, 100);
+ 
+ fill(0, 0, 255);
+ noStroke();
+ ellipse(50, 100, 40, 40);
+ 
+}
+void draw() {
+}
+						</code>
+					</pre>
 					
 					<figure>
-						<img src="images/bubble.jpg" alt="BubblePopper" width="600"/>
-						<figcaption>BubblePopper met twee spelers.</figcaption>
+						<img src="images/cv1.jpg" alt="Ellipsen" width="200"/>
+						<figcaption>Gekleurde ellipsen.</figcaption>
 					</figure>
+				
+				<h2>Opdracht 2</h2>
+					<p>In Processing zijn er veel meer vormen die je kan maken. Ik heb een aantal vormen gemaakt en deze ook weer verschillende kleurtjes gegeven.				
 					</p>
 					
-					<p>
-						<figure>
-							<img src="images/wakeboarding.jpg" alt ="Wakeboarding" width="600" />
-							<figcaption>Wakeboarding installatie.</figcaption>
-						</figure>
+					<pre>
+						<code>
+void setup() {
+ size(200,200);
+ ellipseMode(CORNER);
+ 
+ strokeWeight(5);
+ line(40, 40, 100, 20);
+ 
+ fill(255, 255, 0);
+ stroke(0, 255, 205);
+ triangle(100, 40, 60, 150, 50, 50);
+ 
+ fill(0, 0, 255);
+ noStroke();
+ arc(100, 100, 60, 60, 75, 80);
+ 
+ fill(255, 0, 255);
+ noStroke();
+ quad(100, 100, 150, 60, 175, 80, 80, 80);
+ 
+}
+void draw() {
+}
+						</code>
+					</pre>					
+					
+		<figure>
+			<img src="images/cv2.jpg" alt ="Vormen" width="200" />
+			<figcaption>Gekleurde vormen.</figcaption>
+		</figure>
+		
+		<h2>Opdracht 3</h2>
+					<p>Processing is voornamelijk bedoeld om interactieve afbeeldingen mee te maken. Ik heb een aantal vormen gemaakt die de beweging van de muis volgen.			
 					</p>
+					
+					<pre>
+						<code>
+int width = 10;
+int height = 20;
+void setup() {
+ size(200,200);
+ background (200,200,200);
+ frameRate(15);
+}
+void draw() {
+ fill(0, 255, 205);
+ rect(mouseX, mouseY, width, height);
+ width++;
+ 
+ fill(255,100,100);
+ triangle(mouseX, mouseY, 100, 150, 20, 20);
+}
+						</code>
+					</pre>					
+					
+		<figure>
+			<img src="images/cv3.jpg" alt ="Vormen" width="200" />
+			<figcaption>Interactieve rechthoeken en driehoeken.</figcaption>
+		</figure>
+					
 				
 				<h2>Reflectie</h2>
 					<p>
